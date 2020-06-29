@@ -29,7 +29,7 @@ public class DataReader {
         try {
             lines = Files.readAllLines(file);
         } catch (IOException e) {
-            throw new ProgramException("Error while reading from file");
+            throw new ProgramException("Error while reading from file", e);
         }
 
         StringBuilder sb = new StringBuilder();
@@ -54,7 +54,7 @@ public class DataReader {
             }
             reader.close();
         } catch (IOException e) {
-            throw new ProgramException("Error while reading from console.");
+            throw new ProgramException("Error while reading from console.", e);
         }
         return sb.toString();
     }
