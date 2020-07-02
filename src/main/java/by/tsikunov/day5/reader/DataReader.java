@@ -17,13 +17,12 @@ public class DataReader {
 
     public String readFromFile(String filePath) throws ProgramException {
         List<String> lines;
-        Path file = Paths.get(DEFAULT_PATH);
+        Path file;
 
-        if(filePath != null) {
-            if(Files.exists(Paths.get(filePath)) &&
-                    !Files.isDirectory(Paths.get(filePath))) {
-                file = Paths.get(filePath);
-            }
+        if(filePath != null && Files.exists(Paths.get(filePath)) && !Files.isDirectory(Paths.get(filePath))) {
+            file = Paths.get(filePath);
+        } else {
+            file = Paths.get(DEFAULT_PATH);
         }
 
         try {
