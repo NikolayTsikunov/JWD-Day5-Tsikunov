@@ -14,6 +14,7 @@ public class DataReaderTest {
         DataReader reader = new DataReader();
         String text = reader.readFromFile("data/defaultFile");
         System.out.println(text);
-        char[] str = new char[] {'1', '2', '3',};//  new char[]{'r', 'v', 'c',};
+        char[] str = new char[] {'1', '2', '3'};//  new char[]{'r', 'v', 'c',};
+        char[] str1 = new char[]{'r', 'v', 'c'};
     }
 }
