@@ -11,7 +11,7 @@ public class ModificationTextAsRegexImpl implements ModificationText {
     private static final String ORDINAL_LETTER = "\\b(\\p{L}{%d})(\\p{L})(\\p{L}*)";
     private static final String REPLACE_GROUP = "$1%s$3";
     private static final String WORD_CERTAIN_LENGTH = "\\b\\p{L}{%d}\\b";
-    
+
 
     public String replaceWordLetter(String text, int letterPosition, char insertingLetter) throws ProgramException {
         if(text == null || letterPosition < 0) {

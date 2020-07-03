@@ -1,10 +1,9 @@
 package by.tsikunov.day5.reader;
 
 import by.tsikunov.day5.exception.ProgramException;
+import by.tsikunov.day5.service.DeletingPartsText;
 import by.tsikunov.day5.service.ModificationText;
-import by.tsikunov.day5.service.impl.ModificationTextAsCharsImpl;
-import by.tsikunov.day5.service.impl.ModificationTextAsRegexImpl;
-import by.tsikunov.day5.service.impl.ModificationTextAsStringImpl;
+import by.tsikunov.day5.service.impl.*;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -32,5 +31,16 @@ public class DataReaderTest {
         modification2.replaceOptionalLengthWords("pointp papa top.", 4, "FUCK");
         modification2.replaceWrongLetter("pointp papa topa", 'p', 'a', 'o');
 
+        DeletingPartsText deleting = new DeletingPartsTextAsStringImpl();
+        deleting.deleteNotLetterChars(text);
+        deleting.deleteOptionalLengthWords("арка жарко arma roma ra", 4);
+
+        DeletingPartsText deleting1 = new DeletingPartsTextAsCharImpl();
+        deleting1.deleteNotLetterChars(text);
+        deleting1.deleteOptionalLengthWords("арка жарко arma roma ra", 4);
+
+        DeletingPartsText deleting2 = new DeletingPartsTextAsRegexImpl();
+        deleting2.deleteNotLetterChars(text);
+        deleting2.deleteOptionalLengthWords("арка жарко arma roma ra", 4);
     }
 }
