@@ -3,7 +3,6 @@ package by.tsikunov.day5.service.impl;
 import by.tsikunov.day5.exception.ProgramException;
 import by.tsikunov.day5.service.ModificationText;
 
-// TODO: 03.07.2020 Tests
 public class ModificationTextAsCharsImpl implements ModificationText {
     public String replaceWordLetter(String text, int letterPosition, char insertingLetter) throws ProgramException {
         if(text == null) {

@@ -18,7 +18,7 @@ public class DeletingPartsTextAsStringImpl implements DeletingPartsText {
         return text.replaceAll(NOT_LETTER_AND_SPACE, SPACE);
     }
 
-    public String deleteOptionalLengthWords(String text, int deletingWordLength) throws ProgramException {
+    public String deleteOptionalLengthWordsWovelBeginning(String text, int deletingWordLength) throws ProgramException {
         if(text == null || deletingWordLength <= 0) {
             throw new ProgramException("Wrong entry data");
         }

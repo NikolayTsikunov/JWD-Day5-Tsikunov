@@ -26,7 +26,7 @@ public class DeletingPartsTextAsCharImpl implements DeletingPartsText {
         return result.toString();
     }
 
-    public String deleteOptionalLengthWords(String text, int deletingWordLength) throws ProgramException {
+    public String deleteOptionalLengthWordsWovelBeginning(String text, int deletingWordLength) throws ProgramException {
         if(text == null) {
             throw new ProgramException("Wrong entry data");
         }
@@ -49,8 +49,9 @@ public class DeletingPartsTextAsCharImpl implements DeletingPartsText {
                     for (int j = wordBeginning; j <= i; j++) {
                         result.append(letters[j]);
                     }
+                } else {
+                    result.append(letters[i]);
                 }
-                result.append(letters[i]);
                 wordLength = 0;
             }
         }

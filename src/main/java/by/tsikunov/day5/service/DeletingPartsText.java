@@ -6,6 +6,6 @@ public interface DeletingPartsText {
 
     String deleteNotLetterChars(String text) throws ProgramException;
 
-    String deleteOptionalLengthWords(String text, int deletingWordLength) throws ProgramException;
+    String deleteOptionalLengthWordsWovelBeginning(String text, int deletingWordLength) throws ProgramException;
 
 }

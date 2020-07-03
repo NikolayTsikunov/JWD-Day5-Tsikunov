@@ -25,7 +25,7 @@ public class DeletingPartsTextAsRegexImpl implements DeletingPartsText {
         return matcher.replaceAll(SPACE);
     }
 
-    public String deleteOptionalLengthWords(String text, int deletingWordLength) throws ProgramException {
+    public String deleteOptionalLengthWordsWovelBeginning(String text, int deletingWordLength) throws ProgramException {
         if(text == null || deletingWordLength <= 0) {
             throw new ProgramException("Wrong entry data");
         }
