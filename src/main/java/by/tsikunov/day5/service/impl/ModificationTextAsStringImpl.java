@@ -1,15 +1,65 @@
 package by.tsikunov.day5.service.impl;
 
+import by.tsikunov.day5.exception.ProgramException;
 import by.tsikunov.day5.service.ModificationText;
 
+// TODO: 03.07.2020 Tests
 public class ModificationTextAsStringImpl implements ModificationText {
-    public void replaceWordLetter(String text, int letterPosition, char insertingLetter) {
 
+    private static final String WORD_BORDER = "\\b";
+    private static final String LETTERS = "\\p{L}+";
+
+    public String replaceWordLetter(String text, int letterPosition, char insertingLetter) throws ProgramException {
+        if(text == null) {
+            throw new ProgramException("Text is null");
+        }
+
+        StringBuilder sb = new StringBuilder();
+        String[] words = text.split(WORD_BORDER);
+
+        for (String word : words) {
+            if(word.length() >= letterPosition && word.matches(LETTERS)) {
+                word = word.substring(0, letterPosition - 1) + insertingLetter + word.substring(letterPosition);
+            }
+            sb.append(word);
+        }
+        return sb.toString();
     }
-    public void replaceWrongLetter(String text, char errorLocation, char correctLetter) {
 
+    public String replaceWrongLetter(String text, char letterLocationError, char errorLetter, char correctLetter) throws ProgramException {
+        if(text == null) {
+            throw new ProgramException("Text is null");
+        }
+
+        StringBuilder sb = new StringBuilder();
+        String[] words = text.split(WORD_BORDER);
+        String correctSeq = "" + letterLocationError + correctLetter;
+        String errorSeq = "" + letterLocationError + errorLetter;
+
+        for (String word : words) {
+            word = word.replaceAll(errorSeq, correctSeq);
+            sb.append(word);
+        }
+
+        return sb.toString();
     }
-    public void replaceOptionalLengthWords(String text, int optionalLength, String insertingWord) {
 
+    public String replaceOptionalLengthWords(String text, int replacementWordLength, String insertingWord) throws ProgramException {
+        if(text == null || insertingWord == null) {
+            throw new ProgramException("Wrong entry data");
+        }
+
+        String[] words = text.split(WORD_BORDER);
+        StringBuilder sb = new StringBuilder();
+
+        for (String word : words) {
+            if(word.matches(LETTERS) && word.length() == replacementWordLength) {
+                sb.append(insertingWord);
+            } else {
+                sb.append(word);
+            }
+        }
+
+        return sb.toString();
     }
 }

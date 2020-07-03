@@ -1,6 +1,11 @@
 package by.tsikunov.day5.service;
 
+import by.tsikunov.day5.exception.ProgramException;
+
 public interface DeletingPartsText {
-    void deleteNotLetterChars(String text);
-    void deleteOptionalWords(String text, int deletingWordLength, boolean isVowelBeginning);
+
+    String deleteNotLetterChars(String text) throws ProgramException;
+
+    String deleteOptionalWords(String text, int deletingWordLength) throws ProgramException;
+
 }

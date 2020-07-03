@@ -1,12 +1,14 @@
 package by.tsikunov.day5.service.impl;
 
+import by.tsikunov.day5.exception.ProgramException;
 import by.tsikunov.day5.service.DeletingPartsText;
 
 public class DeletingPartsTextAsRegexImpl implements DeletingPartsText {
-    public void deleteNotLetterChars(String text) {
-
+    public String deleteNotLetterChars(String text) throws ProgramException {
+        return text;
     }
-    public void deleteOptionalWords(String text, int deletingWordLength, boolean isVowelBeginning) {
 
+    public String deleteOptionalWords(String text, int deletingWordLength) throws ProgramException {
+        return text;
     }
 }
