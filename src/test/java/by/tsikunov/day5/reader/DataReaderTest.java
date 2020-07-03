@@ -1,46 +1,56 @@
 package by.tsikunov.day5.reader;
 
 import by.tsikunov.day5.exception.ProgramException;
-import by.tsikunov.day5.service.DeletingPartsText;
-import by.tsikunov.day5.service.ModificationText;
-import by.tsikunov.day5.service.impl.*;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.util.List;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import static org.testng.Assert.*;
 
 public class DataReaderTest {
 
+    String expected = "From fairest creatures we desire increase,\n" +
+            "That thereby beauty's rose might never die,\n" +
+            "But as the riper should by time decease,\n" +
+            "His tender heir might bear his memory...\n";
     @Test
     public void testReadFromFile() throws ProgramException {
         DataReader reader = new DataReader();
-        String text = reader.readFromFile("data/defaultFile");
-        System.out.println(text);
+        String actual = reader.readFromFile("data/defaultFile");
+        assertEquals(actual, expected);
+    }
 
-        ModificationText modification = new ModificationTextAsCharsImpl();
-        modification.replaceWordLetter("tota popa po trom, nbr. Sir/", 3, 'F');
-        modification.replaceWrongLetter("pointp papa topa", 'p', 'a', 'o');
-        modification.replaceOptionalLengthWords("pointp papa top.", 4, "FUCK");
+    @Test
+    public void testReadFromFileDefault() throws ProgramException {
+        DataReader reader = new DataReader();
+        String actual = reader.readFromFile(null);
+        assertEquals(actual, expected);
+    }
 
-        ModificationText modification1 = new ModificationTextAsStringImpl();
-        modification1.replaceWordLetter("tota popa po trom, nbr. Sir/. Мама мыла раму", 3, 'F');
-
-        ModificationText modification2 = new ModificationTextAsRegexImpl();
-        modification2.replaceWordLetter("tota popa po trom, nbr. Sir/", 3, 'F');
-        modification2.replaceOptionalLengthWords("pointp papa top.", 4, "FUCK");
-        modification2.replaceWrongLetter("pointp papa topa", 'p', 'a', 'o');
-
-        DeletingPartsText deleting = new DeletingPartsTextAsStringImpl();
-        deleting.deleteNotLetterChars(text);
-        deleting.deleteOptionalLengthWords("арка жарко arma roma ra", 4);
-
-        DeletingPartsText deleting1 = new DeletingPartsTextAsCharImpl();
-        deleting1.deleteNotLetterChars(text);
-        deleting1.deleteOptionalLengthWords("арка жарко arma roma ra", 4);
-
-        DeletingPartsText deleting2 = new DeletingPartsTextAsRegexImpl();
-        deleting2.deleteNotLetterChars(text);
-        deleting2.deleteOptionalLengthWords("арка жарко arma roma ra", 4);
+    @Test
+    public void testReadFromConsole() {
+        try {
+            StringBuilder sb = new StringBuilder();
+            sb.append("5").append('\n');
+            sb.append("1").append('\n');
+            sb.append("2").append('\n');
+            sb.append("5").append('\n');
+            sb.append("4").append('\n');
+            sb.append("5").append('\n');
+            sb.append("").append('\n');
+            InputStream inputStream = new ByteArrayInputStream(sb.toString().getBytes());
+            InputStream defaultInputStream = System.in;
+            System.setIn(inputStream);
+            DataReader reader = new DataReader();
+            String actual = reader.readFromConsole();
+            inputStream.close();
+            String expected = "5\n1\n2\n5\n4\n5\n";
+            assertEquals(actual, expected);
+        } catch (ProgramException | IOException e) {
+            fail(e.getMessage());
+        }
     }
 }

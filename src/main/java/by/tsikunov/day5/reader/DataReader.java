@@ -10,7 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-// TODO: 03.07.2020 Tests
 public class DataReader {
 
     private static final String DEFAULT_PATH =
@@ -32,6 +31,7 @@ public class DataReader {
             throw new ProgramException("Error while reading from file", e);
         }
 
+
         StringBuilder sb = new StringBuilder();
         for (String str : lines) {
             sb.append(str).append("\n");
@@ -52,7 +52,6 @@ public class DataReader {
                 }
                 sb.append(line).append("\n");
             }
-            reader.close();
         } catch (IOException e) {
             throw new ProgramException("Error while reading from console.", e);
         }

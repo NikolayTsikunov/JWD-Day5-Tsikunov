@@ -8,6 +8,6 @@ public interface ModificationText {
 
     String replaceWrongLetter(String text, char letterLocationError, char errorLetter, char correctLetter) throws ProgramException;
 
-    String replaceOptionalLengthWords(String text, int replacementWordLength, String insertingWord) throws ProgramException;
+    String replaceOptionalLengthWords(String text, int optionalWordLength, String insertingWord) throws ProgramException;
 
 }

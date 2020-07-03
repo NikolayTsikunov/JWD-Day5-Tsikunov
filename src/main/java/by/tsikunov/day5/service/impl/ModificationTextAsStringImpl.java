@@ -44,7 +44,7 @@ public class ModificationTextAsStringImpl implements ModificationText {
         return sb.toString();
     }
 
-    public String replaceOptionalLengthWords(String text, int replacementWordLength, String insertingWord) throws ProgramException {
+    public String replaceOptionalLengthWords(String text, int optionalWordLength, String insertingWord) throws ProgramException {
         if(text == null || insertingWord == null) {
             throw new ProgramException("Wrong entry data");
         }
@@ -53,7 +53,7 @@ public class ModificationTextAsStringImpl implements ModificationText {
         StringBuilder sb = new StringBuilder();
 
         for (String word : words) {
-            if(word.matches(LETTERS) && word.length() == replacementWordLength) {
+            if(word.matches(LETTERS) && word.length() == optionalWordLength) {
                 sb.append(insertingWord);
             } else {
                 sb.append(word);
