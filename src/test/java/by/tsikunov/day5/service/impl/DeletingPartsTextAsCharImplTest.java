@@ -30,6 +30,7 @@ public class DeletingPartsTextAsCharImplTest {
         deletingPartsText.deleteNotLetterChars(null);
     }
 
+    @Test
     public void deleteOptionalLengthWordsTest() throws ProgramException {
         String text = "amour, logo pass, bright arkar";
         String actual = deletingPartsText.deleteOptionalLengthWordsWovelBeginning(text, 5);

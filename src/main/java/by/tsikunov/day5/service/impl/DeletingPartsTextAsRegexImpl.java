@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class DeletingPartsTextAsRegexImpl implements DeletingPartsText {
 
-    private static final String VOWEL_WORD = "\\b([aeiouyAEIOUYуеыаоэяиюУЕЫАОЭЯИЮ])(\\p{L}{%d})";
+    private static final String VOWEL_WORD = "\\b([aeiouyAEIOUYуеыаоэяиюУЕЫАОЭЯИЮ])(\\p{L}{%d})\\b";
     private static final String NOT_LETTER_AND_SPACE = "[^\\p{L}]\\s?";
     private static final String SPACE = " ";
     private static final String BLANK = "";

@@ -29,7 +29,8 @@ public class DeletingPartsTextAsRegexImplTest {
     public void deleteNotLetterCharsExceptionTest() throws ProgramException {
         deletingPartsText.deleteNotLetterChars(null);
     }
-    
+
+    @Test
     public void deleteOptionalLengthWordsWovelBeginningTest() throws ProgramException {
         String text = "amour, logo pass, bright arkar";
         String actual = deletingPartsText.deleteOptionalLengthWordsWovelBeginning(text, 5);
